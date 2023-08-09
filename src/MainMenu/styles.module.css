@@ -1,0 +1,32 @@
+.container{
+    width: 654px;
+    height: 687px;
+    position: absolute;
+    inset: 0;
+    margin: auto;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 78px;
+}
+
+.title{
+    color: #FCFCFC;
+    font-family: var(--font);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.menu{
+    width: 654px;
+    height: 559px;
+    padding: 56px;
+    border-radius: 20px;
+    background-color: #FCFCFC;
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+}

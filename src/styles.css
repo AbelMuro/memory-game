@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('./Fonts/AtkinsonHyperlegible-Bold.ttf');
+}
+
+:root{
+    --font: 'Atkinson Hyperlegible'
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    transition: all 0.2s linear;
+    box-sizing: border-box;
+}
+
+body, html, #root{
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
