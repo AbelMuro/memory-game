@@ -1,16 +1,11 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.css';
 import {motion} from 'framer-motion';
-import {useDispatch } from 'react-redux';
 import SelectTheme from './SelectTheme';
 import SelectPlayers from './SelectPlayers';
 import SelectGrid from './SelectGrid';
 
-
-//this is where i left off, i will need to somehow detect the change in state 
-//and restyle the buttons if they have the same value as the state
 function MainMenu() {
-    const dispatch = useDispatch();
 
     const variants = {
         hidden: {
@@ -25,17 +20,7 @@ function MainMenu() {
                 duration: 0.5,
                 staggerChildren: 0.3
             }
-        },
-        hover: {
-            scale: 1.2,
-            backgroundColor: '#6395B8',
-            transition: {scale: {type: 'bounce', stiffness: 400, damping: 4 }}
         }
-    }
-
-    const handleTheme = (e) => {
-
-        dispatch({type: 'change theme', theme:''})
     }
 
     useEffect(() => {
