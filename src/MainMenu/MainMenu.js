@@ -1,62 +1,75 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.css';
+import {motion} from 'framer-motion';
+import {useDispatch } from 'react-redux';
+import SelectTheme from './SelectTheme';
+import SelectPlayers from './SelectPlayers';
+import SelectGrid from './SelectGrid';
 
+
+//this is where i left off, i will need to somehow detect the change in state 
+//and restyle the buttons if they have the same value as the state
 function MainMenu() {
+    const dispatch = useDispatch();
+
+    const variants = {
+        hidden: {
+            x: -100,
+            opacity: 0,            
+        },
+        show: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                type: 'tween',
+                duration: 0.5,
+                staggerChildren: 0.3
+            }
+        },
+        hover: {
+            scale: 1.2,
+            backgroundColor: '#6395B8',
+            transition: {scale: {type: 'bounce', stiffness: 400, damping: 4 }}
+        }
+    }
+
+    const handleTheme = (e) => {
+
+        dispatch({type: 'change theme', theme:''})
+    }
 
     useEffect(() => {
         const body = document.querySelector('body');
         body.style.backgroundColor = '#152938';
     }, [])
 
+
+
     return (
         <section className={styles.container}>
-            <h1 className={styles.title}>
+            <motion.h1 
+                className={styles.title} 
+                initial={{x: -100, opacity: 0}} 
+                animate={{x: 0, opacity: 1}}
+                transition={{
+                    type: 'tween',
+                    duration: 1.5
+                }}
+                >
                 memory
-            </h1>
-            <main className={styles.menu}>
-                <div className={styles.theme}>
-                    <h2 className={styles.theme_title}>
-                        Select Theme
-                    </h2>
-                    <button className={styles.numbers}>
-                        Numbers
-                    </button>
-                    <button className={styles.icons}>
-                        Icons
-                    </button>
-                </div>
-                <div className={styles.players}>
-                    <h2 className={styles.players_title}>
-                        Number of Players
-                    </h2>
-                    <button className={styles.one}>
-                        1
-                    </button>
-                    <button className={styles.two}>
-                        2
-                    </button>
-                    <button className={styles.three}>
-                        3
-                    </button>
-                    <button className={styles.four}>
-                        4
-                    </button>
-                </div>
-                <div className={styles.size}>
-                    <h2 className={styles.size_title}>
-                        Grid Size
-                    </h2>
-                    <button className={styles.fourByFour}>
-                        4x4
-                    </button>
-                    <button className={styles.sixBySix}>
-                        6x6
-                    </button>
-                </div>
-                <button className={styles.start}>
+            </motion.h1>
+            <motion.main 
+                className={styles.menu}
+                initial='hidden'
+                animate='show'
+                variants={variants}>
+                <SelectTheme variants={variants}/>
+                <SelectPlayers variants={variants}/>
+                <SelectGrid variants={variants}/>
+                <motion.button className={styles.start} variants={variants}>
                     Start Game
-                </button>
-            </main>            
+                </motion.button>
+            </motion.main>            
         </section>
 
     )

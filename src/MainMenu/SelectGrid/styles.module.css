@@ -1,0 +1,18 @@
+.size{
+    display: grid;
+    grid-template-columns: repeat(2, 256px);
+    column-gap: 30px;
+    row-gap: 16px;
+}
+
+
+.menu_title {
+    color: #7191A5;
+    font-family: var(--font);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    grid-column: 1/3;
+}
+

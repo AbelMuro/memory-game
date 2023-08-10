@@ -29,4 +29,22 @@
     display: flex;
     flex-direction: column;
     gap: 33px;
+    overflow: hidden;
+}
+
+
+
+.start{
+    cursor: pointer;
+    width: 100%;
+    height: 70px;
+    border-radius: 35px;
+    background: #FDA214;
+    color: #FCFCFC;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
