@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.css';
-import {motion} from 'framer-motion';
+import {motion, useAnimate} from 'framer-motion';
 import SelectTheme from './SelectTheme';
 import SelectPlayers from './SelectPlayers';
 import SelectGrid from './SelectGrid';
+import {useNavigate} from 'react-router';
 
 function MainMenu() {
+    const navigate = useNavigate();
+    const [menuRef, animate] = useAnimate();
 
     const variants = {
         hidden: {
@@ -23,12 +26,14 @@ function MainMenu() {
         }
     }
 
+    const handleStart = async () => {
+        navigate('/start');
+    }
+
     useEffect(() => {
         const body = document.querySelector('body');
         body.style.backgroundColor = '#152938';
     }, [])
-
-
 
     return (
         <section className={styles.container}>
@@ -39,8 +44,7 @@ function MainMenu() {
                 transition={{
                     type: 'tween',
                     duration: 1.5
-                }}
-                >
+                }}>
                 memory
             </motion.h1>
             <motion.main 
@@ -48,12 +52,17 @@ function MainMenu() {
                 initial='hidden'
                 animate='show'
                 variants={variants}>
-                <SelectTheme variants={variants}/>
-                <SelectPlayers variants={variants}/>
-                <SelectGrid variants={variants}/>
-                <motion.button className={styles.start} variants={variants}>
-                    Start Game
-                </motion.button>
+                    <SelectTheme variants={variants}/>
+                    <SelectPlayers variants={variants}/>
+                    <SelectGrid variants={variants}/>
+                    <motion.button 
+                        className={styles.start} 
+                        variants={variants}
+                        onClick={handleStart}
+                        transition={{scale: {type: 'spring', stiffness: 400, damping: 4}}}
+                        whileHover={{backgroundColor: '#FFB84A', scale: 1.1}}>
+                            Start Game
+                    </motion.button>
             </motion.main>            
         </section>
 

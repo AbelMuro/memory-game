@@ -1,0 +1,63 @@
+.menuButton{
+    width: 78px;
+    height: 40px;
+    border-radius: 26px;
+    background: #FDA214;
+    color: #FCFCFC;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.overlay{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: transparent;
+}
+.dialog{
+    transform: scale(0);
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 327px;
+    height: 224px;
+    border-radius: 10px;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0px;
+}
+
+.restart, .gameButton{
+    width: 279px;
+    height: 48px;
+    border-radius: 26px;
+    font-family: var(--font);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.restart{
+    background-color: #FDA214;
+    color: #FCFCFC;
+}
+
+.gameButton {
+    background-color: #DFE7EC;
+    color: #304859
+}

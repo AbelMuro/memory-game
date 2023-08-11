@@ -1,3 +1,3 @@
-import SelectPlayers from "./SelectPlayers.js";
+import Game from './Game.js';
 
-export default SelectPlayers;
+export default Game;
