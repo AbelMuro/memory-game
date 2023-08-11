@@ -1,0 +1,24 @@
+.tile{
+    width: 82px;
+    height: 82px;
+    border-radius: 100%;
+    background-color: #304859;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.2s linear;
+}
+
+.tile:hover{
+    background-color: #6395B8;
+}
+
+.tile_image{
+    transition: none;
+    transform: scale(0);
+    width: 40px;
+    object-fit: contain;
+}
+

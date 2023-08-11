@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.css';
 import NavBar from './NavBar';
+import Grid from './Grid';
 
 function Game() {
 
@@ -12,6 +13,7 @@ function Game() {
     return(
         <main className={styles.container}>
             <NavBar/>
+            <Grid/>
         </main>
     )
 }

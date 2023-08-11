@@ -49,7 +49,7 @@ function MobileMenu() {
                 onClick={handleOpen}
                 className={styles.menuButton}
                 initial={{scale: 0}}
-                animate={{scale: 1}}
+                animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                 key={'mobile button'}
                 exit={{scale: 0}}
                 whileHover={{backgroundColor: '#FFB84A', scale: 1.2, transition: {scale: {

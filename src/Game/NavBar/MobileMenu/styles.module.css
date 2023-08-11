@@ -11,6 +11,7 @@
     font-weight: 700;
     line-height: normal;
     cursor: pointer;
+    transition: none;
 }
 
 .overlay{

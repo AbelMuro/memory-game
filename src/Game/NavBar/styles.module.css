@@ -25,6 +25,7 @@
     font-weight: 700;
     cursor: pointer;
     line-height: normal;
+    transition: none;
 }
 
 .game{
@@ -39,6 +40,7 @@
     font-weight: 700;
     line-height: normal;
     cursor: pointer;
+    transition: none;
 }
 
 @media(max-width: 650px){

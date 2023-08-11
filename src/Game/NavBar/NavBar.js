@@ -19,7 +19,7 @@ function NavBar() {
                         className={styles.restart}
                         whileHover={{backgroundColor: '#FFB84A', scale: 1.2}}
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {}}}
+                        animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                         key={'button one'}
                         exit={{scale: 1.67}}
                         transition={{scale: {type: 'spring', stiffness: 400, damping: 4}}}>
@@ -29,7 +29,7 @@ function NavBar() {
                         className={styles.game}
                         whileHover={{backgroundColor: '#6395B8', color: '#FFFFFF', scale: 1.2}}
                         initial={{scale: 0}}
-                        animate={{scale: 1, transition: {}}}
+                        animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                         key={'button two'}
                         exit={{scale: 0}}
                         transition={{scale: {type: 'spring', stiffness: 400, damping: 4}}}>
