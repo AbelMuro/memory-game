@@ -11,6 +11,10 @@
     transition: background-color 0.2s linear;
 }
 
+.tile.select {
+    background-color: #FDA214;
+}
+
 .tile:hover{
     background-color: #6395B8;
 }
