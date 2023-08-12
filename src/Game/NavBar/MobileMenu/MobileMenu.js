@@ -52,9 +52,9 @@ function MobileMenu() {
                 animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                 key={'mobile button'}
                 exit={{scale: 0}}
-                whileHover={{backgroundColor: '#FFB84A', scale: 1.2, transition: {scale: {
+                whileHover={{backgroundColor: '#FFB84A', scale: 1.1, transition: {scale: {
                     type:'spring',
-                    stiffness: 400,
+                    stiffness: 100,
                     damping: 4
                 }}}}>
                 Menu

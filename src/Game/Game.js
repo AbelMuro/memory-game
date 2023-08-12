@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import styles from './styles.module.css';
 import NavBar from './NavBar';
 import Grid from './Grid';
+import Players from './Players'
 
 function Game() {
 
@@ -14,6 +15,7 @@ function Game() {
         <main className={styles.container}>
             <NavBar/>
             <Grid/>
+            <Players/>
         </main>
     )
 }

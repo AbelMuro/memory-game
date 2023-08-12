@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux';
 function Grid () {
     const containerRef = useRef();
     const grid = useSelector(state => state.grid);
-    const players = useSelector(state => state.players);
-    const theme = useSelector(state => state.theme);
 
     const tiles = useMemo(() => {
         const rows = Number(grid[0]);
@@ -20,7 +18,7 @@ function Grid () {
 
         for(let i = 0; i < rows * columns; i++){   
             tiles.push(
-                <Tile tile={randomTiles[i]} id={i} key={i}/>
+                <Tile tile={randomTiles[i]} key={i}/>
             )
         }
         return tiles;

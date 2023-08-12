@@ -1,9 +1,9 @@
 .container{
     width: 654px;
-    height: 687px;
     position: absolute;
-    inset: 0;
-    margin: auto;    
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,8 +21,7 @@
 
 
 .menu{
-    width: 654px;
-    height: 559px;
+    width: 100%;
     padding: 56px;
     border-radius: 20px;
     background-color: #FCFCFC;
@@ -31,8 +30,6 @@
     gap: 33px;
     overflow: hidden;
 }
-
-
 
 .start{
     cursor: pointer;
@@ -47,4 +44,29 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+@media(max-width: 720px){
+    .container{
+        width: 90%;
+    }
+}
+
+@media(max-width: 600px){
+    .title{
+        font-size: 2rem;
+    }
+
+    .container{
+        gap: 45px;
+    }
+
+    .menu{
+        padding: 24px;
+        gap: 24px;
+    }
+    .start{
+        height: 48px;
+        font-size: 1.125rem;
+    }
 }

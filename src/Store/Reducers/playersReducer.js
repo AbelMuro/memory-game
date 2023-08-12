@@ -1,7 +1,7 @@
-export default function playersReducer(players = 1, action) {
+export default function playersReducer(players = [{playerScore: 0}], action) {
     switch(action.type){
-        case 'change players':
-            return action.players;
+        case 'add players':
+            return [...action.players];
         default: 
             return players;
     }

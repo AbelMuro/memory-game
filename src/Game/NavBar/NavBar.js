@@ -17,22 +17,22 @@ function NavBar() {
                 <>
                     <motion.button 
                         className={styles.restart}
-                        whileHover={{backgroundColor: '#FFB84A', scale: 1.2}}
+                        whileHover={{backgroundColor: '#FFB84A', scale: 1.1}}
                         initial={{scale: 0}}
                         animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                         key={'button one'}
                         exit={{scale: 1.67}}
-                        transition={{scale: {type: 'spring', stiffness: 400, damping: 4}}}>
+                        transition={{scale: {type: 'spring', stiffness: 100, damping: 4}}}>
                             Restart
                     </motion.button>
                     <motion.button 
                         className={styles.game}
-                        whileHover={{backgroundColor: '#6395B8', color: '#FFFFFF', scale: 1.2}}
+                        whileHover={{backgroundColor: '#6395B8', color: '#FFFFFF', scale: 1.1}}
                         initial={{scale: 0}}
                         animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
                         key={'button two'}
                         exit={{scale: 0}}
-                        transition={{scale: {type: 'spring', stiffness: 400, damping: 4}}}>
+                        transition={{scale: {type: 'spring', stiffness: 100, damping: 4}}}>
                             New Game
                     </motion.button>                
                 </>}

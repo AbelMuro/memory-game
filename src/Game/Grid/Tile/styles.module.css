@@ -2,27 +2,39 @@
     width: 82px;
     height: 82px;
     border-radius: 100%;
-    background-color: #304859;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     transition: background-color 0.2s linear;
+    background-color: #304859;
+    color: #FCFCFC;
 }
 
-.tile.select {
-    background-color: #FDA214;
+.clicked{
+    background-color: #BCCED9;
 }
 
-.tile:hover{
+.currentPlayerClicked{
+    background-color: #FDA214
+}
+
+.tile:not(.tile.clicked):not(.tile.currentPlayerClicked):hover{
     background-color: #6395B8;
 }
 
 .tile_image{
     transition: none;
-    transform: scale(0);
     width: 40px;
     object-fit: contain;
 }
 
+.tile_number{
+    font-family: var(--font);
+    font-size: 2.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: none;
+}
