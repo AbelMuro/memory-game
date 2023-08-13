@@ -8,6 +8,7 @@ function Tile({tile}) {
     const tiles = useSelector(state => state.tiles);
     const theme = useSelector(state => state.theme);    
     const [selected, setSelected] = useState(false);
+    const [matches, setMatches] = useState(false);
     const [iconRef, animateIcon] = useAnimate();    
     const tileRef = useRef();
     const tileID = useRef(Math.random());
@@ -38,7 +39,7 @@ function Tile({tile}) {
     }, [tiles])
 
     useEffect(() => {
-        if(tiles.length < 2) return;
+        if(tiles.length < 2) return; //this is the problem
 
         const firstTile = tiles[0].tile;
         const secondTile = tiles[1].tile;
@@ -49,8 +50,9 @@ function Tile({tile}) {
 
             //this is where i left off, i will need to prevent any further animations from happening at this point
             tileRef.current.classList.remove(styles.currentPlayerClicked);
+            setMatches(true);
         }
-        else {
+        else if(!matches) {
             tileRef.current.style.pointerEvents = 'none';
             setTimeout(() => {
                 if(!tileRef.current || !iconRef.current) return;
