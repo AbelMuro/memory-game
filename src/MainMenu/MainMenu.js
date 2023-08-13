@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
 import styles from './styles.module.css';
-import {motion, useAnimate} from 'framer-motion';
+import {motion} from 'framer-motion';
 import SelectTheme from './SelectTheme';
 import SelectPlayers from './SelectPlayers';
 import SelectGrid from './SelectGrid';
 import {useNavigate} from 'react-router';
+import {useDispatch} from 'react-redux';
 
 function MainMenu() {
     const navigate = useNavigate();
-    const [menuRef, animate] = useAnimate();
+    const dispatch = useDispatch();
 
     const variants = {
         hidden: {
@@ -34,6 +35,10 @@ function MainMenu() {
         const body = document.querySelector('body');
         body.style.backgroundColor = '#152938';
     }, [])
+
+    useEffect(() => {
+        dispatch({type: 'remove all tiles'})    //just in case the player goes back to the main menu
+    }, [])                                      //i do this to avoid bugs
 
     return (
         <section className={styles.container}>

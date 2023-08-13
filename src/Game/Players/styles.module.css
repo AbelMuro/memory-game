@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
+    padding-bottom: 74px;
 }
 
 .player{
@@ -20,13 +21,55 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    position: relative;
 }
 
-.player span {
+.score {
     color: #304859;
     font-family: var(--font);
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.currentPlayer{
+    background-color: #FDA214;
+    color: #FCFCFC;
+}
+
+.currentScore {
+    color: white;
+}
+
+.currentTurn {
+    color: #152938;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: var(--font);
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 5px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -40px;
+    transition: none;
+}
+
+.arrow{
+    width: 0px;
+    height: 0px;
+    border-top: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #FDA214;
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
 }

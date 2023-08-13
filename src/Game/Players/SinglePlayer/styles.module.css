@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.box{
+    width: 255px;
+    height: 72px;
+    border-radius: 10px;
+    background-color: #DFE7EC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 21px;
+}
+
+.title{
+    color: #7191A5;
+    font-family: var(--font);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.data{
+    color: #304859;
+    text-align: right;
+    font-family: var(--font);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

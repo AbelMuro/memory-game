@@ -13,7 +13,10 @@ function PlayerButton({numberOfPlayers, variants}) {
         number_of_players = Number(number_of_players);
         const players = []
         for(let i = 0; i < number_of_players; i++){
-            players.push({playerScore: 0})
+            if(i === 0)
+                players.push({playerScore: 0, turn: true});
+            else
+                players.push({playerScore: 0, turn: false})
         }
         dispatch({type: 'add players', players: players})
     }

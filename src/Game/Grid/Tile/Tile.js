@@ -1,97 +1,100 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
-import {motion, useAnimate} from 'framer-motion';
+import {motion} from 'framer-motion';
 import {useDispatch, useSelector} from 'react-redux';
+import variants from './Variants/Variants.js';
 import icons from './icons';
 
 function Tile({tile}) {
     const tiles = useSelector(state => state.tiles);
     const theme = useSelector(state => state.theme);    
-    const [selected, setSelected] = useState(false);
-    const [matches, setMatches] = useState(false);
-    const [iconRef, animateIcon] = useAnimate();    
+    const grid = useSelector(state => state.grid)
+    const [selected, setSelected] = useState(false);        //local state will check if the current tile has been selected
+    const [matches, setMatches] = useState(false);  
     const tileRef = useRef();
-    const tileID = useRef(Math.random());
+    const iconRef = useRef();
     const dispatch = useDispatch();
 
     const handleClick = () => {
         setSelected(true);
-        animateIcon(iconRef.current, {scale: 1});
+        iconRef.current.classList.add(styles.visible);
+        tileRef.current.style.pointerEvents = 'none';
 
-        if(tiles.length + 1 > 2){       //we check the length of the array before we add an item, which is why im adding 1 to the length
+        if(tiles.length + 1 > 2){                         
             dispatch({type: 'remove all tiles'});              
-            dispatch({type: 'add tile', tile, tileID: tileID.current})  
+            dispatch({type: 'add tile', tile})  
         }
         else
-            dispatch({type: 'add tile', tile, tileID: tileID.current})
+            dispatch({type: 'add tile', tile})
     }
 
     useEffect(() => {
-        tiles.map((currentTile) => {
-            const tileInStore = currentTile.tileID;
-            if(tileInStore === tileID.current)
+        tiles.map((tileInStore) => {
+            const tileInStoreValue = tileInStore.tile;
+            if(tileInStoreValue === tile && selected)
                 tileRef.current.classList.add(styles.currentPlayerClicked)
-            else if(selected)
-                tileRef.current.classList.add(styles.clicked);
-            else 
-                tileRef.current.classList.remove(styles.clicked);
         })
-    }, [tiles])
+    }, [tiles, selected])
 
     useEffect(() => {
-        if(tiles.length < 2) return; //this is the problem
-
+        if(tiles.length < 2) return; 
         const firstTile = tiles[0].tile;
         const secondTile = tiles[1].tile;
-        const firstTileId = tiles[0].tileID;
-        const secondTileId = tiles[1].tileID;
 
-        if(firstTile === secondTile){
-
-            //this is where i left off, i will need to prevent any further animations from happening at this point
-            tileRef.current.classList.remove(styles.currentPlayerClicked);
-            setMatches(true);
+        if(firstTile === secondTile && selected){
+            tileRef.current.style.pointerEvents = 'none';
+            setTimeout(() => {
+                if(!tileRef.current) return;
+                tileRef.current.classList.add(styles.clicked);
+                tileRef.current.classList.remove(styles.currentPlayerClicked);
+                setMatches(true);              
+            }, 2000)
         }
         else if(!matches) {
             tileRef.current.style.pointerEvents = 'none';
             setTimeout(() => {
                 if(!tileRef.current || !iconRef.current) return;
-                animateIcon(iconRef.current, {scale: 0});
+                iconRef.current.classList.remove(styles.visible)
                 tileRef.current.classList.remove(styles.currentPlayerClicked);
                 tileRef.current.classList.remove(styles.clicked);
-                tileRef.current.classList.add(styles.notClickedYet);      
-                setSelected(false);   
-                tileRef.current.style.pointerEvents = '';       
+                tileRef.current.classList.add(styles.notClickedYet); 
+                tileRef.current.style.pointerEvents = '';                          
+                setSelected(false);              
             }, 2000)
         }
     }, [tiles])
+
+    useEffect(() => {
+        tileRef.current.style.pointerEvents = 'none';
+        iconRef.current.style.pointerEvents = 'none';
+        tileRef.current.classList.add(styles.clicked);
+        iconRef.current.classList.add(styles.visible);
+
+        setTimeout(() => {
+            if(!tileRef.current || !iconRef.current) return;
+            tileRef.current.style.pointerEvents = ''
+            iconRef.current.style.pointerEvents = '';
+            tileRef.current.classList.remove(styles.clicked);
+            iconRef.current.classList.remove(styles.visible);
+        }, grid === '4x4' ? 3300 : 7300)
+    }, [grid])
 
     return(
         <motion.div 
             className={styles.tile} 
             onClick={handleClick}
-            initial={{scale: 0}}
-            animate={{scale: 1, transition: {scale: {duration: 0.4}}}}  
-            ref={tileRef}
-            whileHover={{
-                scale: 1.1, 
-                transition: {scale: 
-                    {type: 'spring', 
-                    stiffness: 100, 
-                    damping: 4}}}}>
-
-                        {theme === 'Icons' ? 
-                        <motion.img 
-                            className={styles.tile_image}
-                            initial={{scale: 0}}
-                            src={icons[tile]}
-                            ref={iconRef}/> : 
-                            <motion.span
-                                className={styles.tile_number} 
-                                initial={{scale: 0}}
-                                ref={iconRef}>
-                                {tile}
-                            </motion.span>}
+            variants={variants}
+            ref={tileRef}>
+            {theme === 'Icons' ? 
+                <img 
+                    className={styles.tile_image}
+                    src={icons[tile]}
+                    ref={iconRef}/> : 
+                    <span
+                        className={styles.tile_number} 
+                        ref={iconRef}>
+                            {tile}
+                    </span>}
         </motion.div>
     )
 }

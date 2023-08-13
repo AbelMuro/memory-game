@@ -12,6 +12,7 @@
     color: #FCFCFC;
 }
 
+
 .clicked{
     background-color: #BCCED9;
 }
@@ -25,9 +26,9 @@
 }
 
 .tile_image{
-    transition: none;
     width: 40px;
     object-fit: contain;
+    transform: scale(0);
 }
 
 .tile_number{
@@ -36,5 +37,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    transition: none;
+    transform: scale(0);
+}
+
+.visible {
+    transform: scale(1);
 }
