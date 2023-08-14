@@ -1,4 +1,6 @@
 .tile{
+    width: 82px;
+    height: 82px;
     border-radius: 100%;
     cursor: pointer;
     display: flex;
