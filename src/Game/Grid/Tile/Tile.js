@@ -79,6 +79,13 @@ function Tile({tile}) {
         }, grid === '4x4' ? 3300 : 7300)
     }, [grid])
 
+    useEffect(() => {
+        tileRef.current.style.width = grid === '4x4' ? '118px' : '82px';
+        tileRef.current.style.height = grid === '4x4' ? '118px' : '82px';
+        iconRef.current.style.fontSize = grid === '4x4' ? '3.5rem' : '2.75rem';
+        iconRef.current.style.width = grid === '4x4' ? '56px' : '56px';
+    }, [grid])
+
     return(
         <motion.div 
             className={styles.tile} 

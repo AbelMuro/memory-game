@@ -6,6 +6,8 @@ import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 
+
+//this is where i left off, i will need to work on the responsiveness of this component
 function Grid () {
     const containerRef = useRef();
     const grid = useSelector(state => state.grid);

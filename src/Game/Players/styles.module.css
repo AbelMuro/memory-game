@@ -57,7 +57,7 @@
     right: 0;
     margin: auto;
     bottom: -40px;
-    transition: none;
+    transition: font-size 0.2s linear;
 }
 
 .arrow{
@@ -72,4 +72,46 @@
     left: 0px;
     right: 0px;
     margin: auto;
+}
+
+@media(max-width: 900px){
+    .container{
+        gap: 11px;
+    }
+}
+
+@media(max-width: 850px){
+    .player{
+        font-size: 0.9375rem;
+        height: 80px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px;
+    }
+    .score{
+        font-size: 1.5rem;
+    }
+
+    .currentTurn{
+        font-size: 0.6rem;
+    }
+}
+
+@media(max-width: 650px){
+    .container{
+        gap: 24px;
+    }   
+
+    .player{
+        height: 70px;
+        align-items: center;
+    }
+
+    .arrow{
+        border-top: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #FDA214;
+        top: -20px;
+    }
 }

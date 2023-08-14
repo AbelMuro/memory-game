@@ -3,9 +3,12 @@ import SinglePlayer from './SinglePlayer';
 import styles from './styles.module.css';
 import { useSelector } from 'react-redux';
 import {motion} from 'framer-motion';
+import useMediaQuery from '../../Hooks/useMediaQuery.js';
 
 function Players () {
     const players = useSelector(state => state.players);
+    const [mobile] = useMediaQuery('(max-width: 650px)');
+    const [tablet] = useMediaQuery('(max-width: 850px)');
 
     const variantChildren = {
         hidden: {
@@ -40,11 +43,11 @@ function Players () {
                                     initial={{y : 50, opacity: 0}} 
                                     animate={{y: 0, opacity: 1}}
                                     transition={{opacity: {type: 'tween', duration: 0.85}}}/>}
-                            {`Player ${i + 1}`}
+                            {mobile ? `P${i + 1}` : `Player ${i + 1}`}
                             <span className={currentTurn ? [styles.score , styles.currentScore].join(' ') : styles.score}>
                                 {score}                            
                             </span>
-                            {currentTurn ? 
+                            {currentTurn && !tablet ? 
                                 <motion.p className={styles.currentTurn} layoutId='currentTurn'>
                                     current turn
                                 </motion.p> : <></>

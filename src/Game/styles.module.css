@@ -1,16 +1,32 @@
 .container{
     width: 1110px;
-    height: 687px;
     display: flex;
     flex-direction: column;
     gap: 85px;
     position: absolute;
-    inset: 0;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
     margin: auto;
 }
 
 @media(max-width: 1170px){
     .container{
         width: 90%;
+    }
+}
+
+
+@media(max-width: 850px){
+    .container{
+        top: 38px;
+        gap: 121px;
+    }
+}
+
+@media(max-width: 650px){
+    .container{
+        top: 29px;
+        gap: 85px;
     }
 }
