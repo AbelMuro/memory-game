@@ -3,22 +3,26 @@ import styles from './styles.module.css';
 import {motion} from 'framer-motion';
 import {useDispatch, useSelector} from 'react-redux';
 import variants from './Variants/Variants.js';
-import icons from './icons';
+import TileIcon from './TileIcon';
 
 function Tile({tile}) {
     const tiles = useSelector(state => state.tiles);
-    const theme = useSelector(state => state.theme);    
-    const grid = useSelector(state => state.grid)
+    const grid = useSelector(state => state.grid);
+    const reset = useSelector(state => state.reset);
     const [selected, setSelected] = useState(false);        //local state will check if the current tile has been selected
-    const [matches, setMatches] = useState(false);  
+    const [matches, setMatches] = useState(false);          //local state will check if the current selected tile matches another selected tile
     const tileRef = useRef();
     const iconRef = useRef();
+    const timeoutRef = useRef();
     const dispatch = useDispatch();
 
+    //this will dispatch the current tile to the store
+    //and we will change the tile to orange
     const handleClick = () => {
         setSelected(true);
-        iconRef.current.classList.add(styles.visible);
+        iconRef.current.classList.add('visible');
         tileRef.current.style.pointerEvents = 'none';
+        tileRef.current.classList.add(styles.currentPlayerClicked)
 
         if(tiles.length + 1 > 2){                         
             dispatch({type: 'remove all tiles'});              
@@ -28,14 +32,9 @@ function Tile({tile}) {
             dispatch({type: 'add tile', tile})
     }
 
-    useEffect(() => {
-        tiles.map((tileInStore) => {
-            const tileInStoreValue = tileInStore.tile;
-            if(tileInStoreValue === tile && selected)
-                tileRef.current.classList.add(styles.currentPlayerClicked)
-        })
-    }, [tiles, selected])
-
+    //this will compare the two tiles in the store 
+    //if they are the same, then we change both tiles from orange to grey,
+    //if they are not, then they we change both tiles from orange to blue
     useEffect(() => {
         if(tiles.length < 2) return; 
         const firstTile = tiles[0].tile;
@@ -43,7 +42,7 @@ function Tile({tile}) {
 
         if(firstTile === secondTile && selected){
             tileRef.current.style.pointerEvents = 'none';
-            setTimeout(() => {
+            timeoutRef.current = setTimeout(() => {
                 if(!tileRef.current) return;
                 tileRef.current.classList.add(styles.clicked);
                 tileRef.current.classList.remove(styles.currentPlayerClicked);
@@ -54,35 +53,40 @@ function Tile({tile}) {
             tileRef.current.style.pointerEvents = 'none';
             setTimeout(() => {
                 if(!tileRef.current || !iconRef.current) return;
-                iconRef.current.classList.remove(styles.visible)
+                iconRef.current.classList.remove('visible')
                 tileRef.current.classList.remove(styles.currentPlayerClicked);
                 tileRef.current.classList.remove(styles.clicked);
-                tileRef.current.classList.add(styles.notClickedYet); 
                 tileRef.current.style.pointerEvents = '';                          
                 setSelected(false);              
             }, 2000)
         }
     }, [tiles])
 
+    // we reset the tile back to blue if the user clicks on the restart button
+    useEffect(() => {
+        if(!reset) return;
+        tileRef.current.classList.remove(styles.currentPlayerClicked);
+        tileRef.current.classList.remove(styles.clicked);
+        iconRef.current.classList.remove('visible');
+        tileRef.current.style.pointerEvents = '';
+        clearTimeout(timeoutRef.current);
+        dispatch({type: 'reset all tiles', reset: false});
+    }, [reset])
+
+    //when the component first gets mounted, we will display the values of the tiles for a brief moment
     useEffect(() => {
         tileRef.current.style.pointerEvents = 'none';
-        iconRef.current.style.pointerEvents = 'none';
         tileRef.current.classList.add(styles.clicked);
-        iconRef.current.classList.add(styles.visible);
+        iconRef.current.classList.add('visible');
 
         setTimeout(() => {
             if(!tileRef.current || !iconRef.current) return;
             tileRef.current.style.pointerEvents = ''
-            iconRef.current.style.pointerEvents = '';
             tileRef.current.classList.remove(styles.clicked);
-            iconRef.current.classList.remove(styles.visible);
-        }, grid === '4x4' ? 3300 : 7300)
+            iconRef.current.classList.remove('visible');
+        }, grid === '4x4' ? 6000 : 11000)
     }, [grid])
-
-    useEffect(() => {
-        iconRef.current.style.fontSize = grid === '4x4' ? '3.5rem' : '2.75rem';
-        iconRef.current.style.width = grid === '4x4' ? '56px' : '56px';
-    }, [grid])
+    
 
     return(
         <motion.div 
@@ -90,16 +94,7 @@ function Tile({tile}) {
             onClick={handleClick}
             variants={variants}
             ref={tileRef}>
-            {theme === 'Icons' ? 
-                <img 
-                    className={styles.tile_image}
-                    src={icons[tile]}
-                    ref={iconRef}/> : 
-                    <span
-                        className={styles.tile_number} 
-                        ref={iconRef}>
-                            {tile}
-                    </span>}
+                <TileIcon tile={tile} ref={iconRef}/>
         </motion.div>
     )
 }

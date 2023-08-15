@@ -1,5 +1,30 @@
 .container{
     display: grid;
-    gap: 16px;
     justify-content: center;
+}
+
+.fourByFour {
+    gap: 20px;
+    grid-template-columns: repeat(4, 118px);
+    grid-template-rows: repeat(4, 118px);
+}
+
+.sixBySix{
+    gap: 16px;
+    grid-template-columns: repeat(6, 82px);
+    grid-template-rows: repeat(6, 82px);
+}
+
+@media(max-width: 650px){
+    .fourByFour{
+        gap: 12.29px;
+        grid-template-columns: repeat(4, 72.53px);
+        grid-template-rows: repeat(4, 72.53px);
+    }
+
+    .sixBySix{
+        gap: 12.29px;
+        grid-template-columns: repeat(6, 46.88px);
+        grid-template-rows: repeat(6, 46.88px);
+    }
 }

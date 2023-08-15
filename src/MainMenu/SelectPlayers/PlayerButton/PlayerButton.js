@@ -18,7 +18,7 @@ function PlayerButton({numberOfPlayers, variants}) {
             else
                 players.push({playerScore: 0, turn: false})
         }
-        dispatch({type: 'add players', players: players})
+        dispatch({type: 'initialize players', players: players})
     }
 
     useEffect(() => {

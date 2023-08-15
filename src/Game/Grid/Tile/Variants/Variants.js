@@ -4,5 +4,8 @@ export default {
     },
     show: {
         scale: 1,
+        transition: {
+            scale: {type: 'spring', stiffness: 60, damping: 7}
+        }
     }
 }

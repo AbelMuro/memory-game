@@ -6,8 +6,6 @@ import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {motion} from 'framer-motion';
 
-
-//this is where i left off, i will need to work on the responsiveness of this component
 function Grid () {
     const containerRef = useRef();
     const grid = useSelector(state => state.grid);
@@ -30,13 +28,17 @@ function Grid () {
     }, [grid])
 
     useEffect(() => {
-        const columns = grid[0];
-        containerRef.current.style.gridTemplateColumns = `repeat(${columns}, auto)`;
+        containerRef.current.classList.add(
+            grid === '4x4' ? 
+                styles.fourByFour : 
+                styles.sixBySix
+            );
     }, [grid])
 
 
     useEffect(() => {
         if(tiles.length !== 2) return;
+
         setTimeout(() => {
             if(tiles[0].tile === tiles[1].tile)
                 dispatch({type: 'increase score'});    
@@ -51,7 +53,7 @@ function Grid () {
             ref={containerRef} 
             initial='hide' 
             animate='show' 
-            transition={{staggerChildren: 0.2}}>
+            transition={{staggerChildren: 0.3}}>
                 {AllTiles}
         </motion.div>
     )

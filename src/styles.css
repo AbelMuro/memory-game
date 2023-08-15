@@ -4,7 +4,12 @@
 }
 
 :root{
-    --font: 'Atkinson Hyperlegible'
+    --font: 'Atkinson Hyperlegible';
+    --closest: 100;
+    --close: 75;
+    --far: 50;
+    --farther: 25;
+    --farthest: 0;
 }
 
 * {
@@ -17,6 +22,6 @@
 
 body, html, #root{
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
 }

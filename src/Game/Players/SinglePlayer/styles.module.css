@@ -33,3 +33,27 @@
     font-weight: 700;
     line-height: normal;
 }
+
+
+@media(max-width: 650px){
+    .container{
+        width: 100%;
+        gap: 25px;
+    }
+    .box{
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        flex-shrink: 1;
+        height: 70px
+    }
+
+    .title{
+        font-size: 15px;
+    }
+
+    .data{
+        font-size: 24px;
+    }
+
+}

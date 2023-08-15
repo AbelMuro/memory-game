@@ -3,12 +3,17 @@ export default function playersReducer(players = [{playerScore: 0, turn: true}],
     let currentPlayer;
 
     switch(action.type){
-        case 'add players':
+        case 'initialize players':
             return [...action.players];
         case 'increase score':
             copyPlayers.forEach(({playerScore, turn}, index) => {
                 if(turn)
                     copyPlayers[index].playerScore += 1;
+            })
+            return copyPlayers;
+        case 'reset scores':
+            copyPlayers.forEach((player , i) => {
+                copyPlayers[i].playerScore = 0;
             })
             return copyPlayers;
 

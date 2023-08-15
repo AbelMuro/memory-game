@@ -5,6 +5,8 @@ import {motion} from 'framer-motion';
 
 function SinglePlayer() {
     const tiles = useSelector(state => state.tiles);
+    const grid = useSelector(state => state.grid);
+    const reset = useSelector(state => state.reset);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [moves, setMoves] = useState(0);
@@ -22,16 +24,16 @@ function SinglePlayer() {
     }
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(prevSec => {
-                setMinutes(prevMin => {
-                    return prevSec + 1 === 60 ? prevMin + 1 : prevMin;
-                })                
-                return prevSec < 59 ? prevSec + 1 : 0;           
-            })
-        }, 1000)
-
-        return () => clearInterval(interval);    
+        setTimeout(() => {
+            setInterval(() => {
+                setSeconds(prevSec => {
+                    setMinutes(prevMin => {
+                        return prevSec + 1 === 60 ? prevMin + 1 : prevMin;
+                    })                
+                    return prevSec < 59 ? prevSec + 1 : 0;           
+                })
+            }, 1000)            
+        }, grid === '4x4' ? 6000 : 11000)
     }, [])
 
     useEffect(() => {
@@ -39,8 +41,15 @@ function SinglePlayer() {
             skipFirstRender.current = false;
             return;
         } 
+        if(tiles.length == 2)
         setMoves(prevMoves => prevMoves + 1);
     }, [tiles])
+
+    useEffect(() => {
+        if(!reset) return;
+        setMinutes(0);
+        setSeconds(0)
+    }, [reset])
 
     return (
         <motion.div 
