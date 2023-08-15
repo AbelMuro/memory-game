@@ -48,7 +48,8 @@ function SinglePlayer() {
     useEffect(() => {
         if(!reset) return;
         setMinutes(0);
-        setSeconds(0)
+        setSeconds(0);
+        setMoves(0);
     }, [reset])
 
     return (

@@ -8,22 +8,22 @@ import useMediaQuery from '../../../../Hooks/useMediaQuery';
 const TileIcon = forwardRef(({tile}, ref) => {
     const theme = useSelector(state => state.theme);
     const grid = useSelector(state => state.grid);
-    const mobile = useMediaQuery('(max-width: 650px)');
+    const [mobile] = useMediaQuery('(max-width: 650px)');
 
     useEffect(() => {
         if(grid === '4x4'){
             if(theme === 'Numbers')
-               ref.current.fontSize = mobile ? '2.5rem' : '';  
+                ref.current.style.fontSize = mobile ? '2.5rem' : '3.5rem';  
             else
-                ref.current.width = mobile ? '30px' : ''
+                ref.current.style.width = mobile ? '30px' : '56px'
         }
         else{
             if(theme === 'Numbers')
-                ref.current.fontSize = mobile ? '' : ''
+                ref.current.style.fontSize = mobile ? '1.5rem' : '2.75rem';
+            else
+                ref.current.style.width = mobile ? '23px' : '40px';
         }   
-
-
-    }, [grid]);
+    }, [grid, mobile]);
 
     return theme === 'Icons' ? 
         <img 

@@ -70,6 +70,8 @@ function Tile({tile}) {
         iconRef.current.classList.remove('visible');
         tileRef.current.style.pointerEvents = '';
         clearTimeout(timeoutRef.current);
+        setSelected(false);
+        setMatches(false);
         dispatch({type: 'reset all tiles', reset: false});
     }, [reset])
 

@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
+import { useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion';
 
-function MobileMenu() {
+function MobileMenu({restart}) {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
     const overlayRef = useRef();
     const dialogRef = useRef();
 
@@ -12,10 +14,12 @@ function MobileMenu() {
     }
 
     const handleRestart = () => {
-        setOpen(false)
+        restart();
+        setOpen(false);
     }
 
     const handleNewGame = () => {
+        navigate('/');
         setOpen(false)
     }
 

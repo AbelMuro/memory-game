@@ -11,12 +11,18 @@ export default function playersReducer(players = [{playerScore: 0, turn: true}],
                     copyPlayers[index].playerScore += 1;
             })
             return copyPlayers;
+        case 'reset turn':
+            return players.map(({playerScore}, index) => {
+                if(index === 0)
+                    return {playerScore, turn: true};
+                else
+                    return {playerScore, turn: false};
+            })
         case 'reset scores':
             copyPlayers.forEach((player , i) => {
                 copyPlayers[i].playerScore = 0;
             })
             return copyPlayers;
-
         case 'next player': 
             copyPlayers.forEach(({playerScore, turn}, index) => {
                 if(turn){
@@ -30,7 +36,6 @@ export default function playersReducer(players = [{playerScore: 0, turn: true}],
                 copyPlayers[0].turn = true;
 
             return copyPlayers;
-
         default: 
             return players;
     }

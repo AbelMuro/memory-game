@@ -37,8 +37,10 @@ function MainMenu() {
     }, [])
 
     useEffect(() => {
+        dispatch({type: 'reset scores'});
+        dispatch({type: 'reset turn'});
         dispatch({type: 'remove all tiles'})    //just in case the player goes back to the main menu
-    }, [])                                      //i do this to avoid bugs
+    }, [])                                      //im doing this to avoid bugs
 
     return (
         <section className={styles.container}>

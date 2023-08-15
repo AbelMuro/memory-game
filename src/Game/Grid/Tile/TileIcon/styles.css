@@ -1,11 +1,9 @@
 .tile_image{
-    width: 56px;
     object-fit: contain;
     transform: scale(0);
 }
 
 .tile_number{
-    font-size: 3.5rem;
     text-align: center;
     font-family: var(--font);
     font-style: normal;
