@@ -3,10 +3,11 @@ import styles from './styles.module.css';
 import { useSelector } from 'react-redux';
 import {motion} from 'framer-motion';
 
-
+//this is where i left off, i will need to get the winningPlayers array and change the scope to global, and use it for the sortedArray,
 function DisplayWinnerDialog() {
     const [open, setOpen] = useState(false);
     const players = useSelector(state => state.players);
+    const grid = useSelector(state => state.grid);
     const overlayRef = useRef();
     const dialogRef = useRef();
 
@@ -17,23 +18,36 @@ function DisplayWinnerDialog() {
     })
 
     useEffect(() => {
-        //this is where i left off, i will need to accumulate all the scores and see if they match up to the maximum score possible
-    }, [])
+        const highestScorePossible = grid === '4x4' ? 8 : 18;
+        const playerWithHighestScore = 0;
+        const winningPlayers = [];
+        const allScores = players.reduce((acc, {playerNumber, playerScore}) => {
+            if(playerWithHighestScore <= playerScore){
+                highestScorePossible = playerScore
+                winningPlayers.push(playerNumber);
+            }
+            return acc + playerScore;
+        }, 0)
+
+        if(allScores === highestScorePossible)
+            setOpen(true);
+        
+    }, [players])
 
     useEffect(() => {
         if(open){
-            overlayRef.current.style.display = 'block';
+            overlayRef.current.style.display = 'flex';
             setTimeout(() => {
                 if(!overlayRef.current || !dialogRef.current) return;
                 overlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                dialogRef.current.style.transform = 'scale(1)';
+                dialogRef.current.style.transform = 'scale(1) translate(-50%, -50%)';
             }, 10)
         }
         else{
             overlayRef.current.style.backgroundColor = '';
             dialogRef.current.style.transform = '';
             setTimeout(() => {
-                if(!overlayRef.current) return
+                if(!overlayRef.current) return;
                 overlayRef.current.style.display = '';                
             }, 200)
         }
@@ -41,7 +55,7 @@ function DisplayWinnerDialog() {
 
     return(
         <div className={styles.overlay} ref={overlayRef}>
-            <dialog open={true} className={styles.dialog} ref={dialogRef}>
+            <dialog className={styles.dialog} ref={dialogRef}>
                 <h1 className={styles.title}>
                     Player 3 Wins!
                 </h1>
