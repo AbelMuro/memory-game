@@ -14,11 +14,11 @@ function PlayerButton({numberOfPlayers, variants}) {
         const players = []
         for(let i = 0; i < number_of_players; i++){
             if(i === 0)
-                players.push({playerScore: 0, turn: true});
+                players.push({playerNumber: i + 1, playerScore: 0, turn: true});
             else
-                players.push({playerScore: 0, turn: false})
+                players.push({playerNumber: i + 1, playerScore: 0, turn: false});
         }
-        dispatch({type: 'initialize players', players: players})
+        dispatch({type: 'initialize players', players: players});
     }
 
     useEffect(() => {

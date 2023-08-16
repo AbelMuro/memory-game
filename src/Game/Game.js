@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import NavBar from './NavBar';
 import Grid from './Grid';
 import Players from './Players'
+import DisplayWinnerDialog from './DisplayWinnerDialog';
 
 function Game() {
 
@@ -16,6 +17,7 @@ function Game() {
             <NavBar/>
             <Grid/>
             <Players/>
+            <DisplayWinnerDialog/>
         </main>
     )
 }

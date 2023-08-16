@@ -30,6 +30,7 @@ function Players () {
                 {players.map((player, i) => {
                     const score = player.playerScore;
                     const currentTurn = player.turn;
+                    const playerNumber = player.playerNumber;
                     return players.length === 1 ? <SinglePlayer key={i}/> : 
                         <motion.div 
                             className={currentTurn ? 
@@ -43,7 +44,7 @@ function Players () {
                                     initial={{y : 50, opacity: 0}} 
                                     animate={{y: 0, opacity: 1}}
                                     transition={{opacity: {type: 'tween', duration: 0.85}}}/>}
-                            {mobile ? `P${i + 1}` : `Player ${i + 1}`}
+                            {mobile ? `P${playerNumber}` : `Player ${playerNumber}`}
                             <span className={currentTurn ? [styles.score , styles.currentScore].join(' ') : styles.score}>
                                 {score}                            
                             </span>

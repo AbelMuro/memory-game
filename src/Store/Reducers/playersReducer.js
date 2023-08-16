@@ -1,4 +1,4 @@
-export default function playersReducer(players = [{playerScore: 0, turn: true}], action) {
+export default function playersReducer(players = [{playerNumber: 1, playerScore: 0, turn: true}], action) {
     let copyPlayers = JSON.parse(JSON.stringify(players));
     let currentPlayer;
 
