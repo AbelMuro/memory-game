@@ -11,6 +11,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    transition: none;
 }
 
 
@@ -26,12 +27,6 @@
     cursor: pointer;
     line-height: normal;
     transition: none;
-}
-
-.restart:disabled{
-    background-color: grey;
-    pointer-events: none;
-    color: rgb(66, 65, 65);
 }
 
 .game{

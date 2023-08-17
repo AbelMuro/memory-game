@@ -14,6 +14,18 @@ function NavBar() {
     const buttonRef = useRef();
     const dispatch = useDispatch();
 
+    const variants = {
+        hidden: {
+            y : -100,
+            opacity: 0,
+        },
+        show: {
+            y: 0,
+            opacity: 1,
+            transition: {y: {type: 'tween', duration: 0.4}}
+        }
+    }
+
     const handleRestart = () => {
         dispatch({type: 'remove all tiles'});     
         dispatch({type: 'reset scores'});
@@ -34,33 +46,33 @@ function NavBar() {
     }, [])
 
     return(
-        <nav className={styles.container}> 
-            <h1 className={styles.logo}>
+        <motion.nav 
+            className={styles.container} 
+            initial={'hidden'} 
+            animate={'show'}
+            transition={{staggerChildren: 0.6}}> 
+            <motion.h1 className={styles.logo} variants={variants}>
                 memory
-            </h1>
+            </motion.h1>
                 {mobile ? <MobileMenu restart={handleRestart}/> : 
                 <>
                     <motion.button 
                         className={styles.restart}
                         onClick={handleRestart}
-                        whileHover={{backgroundColor: '#FFB84A', scale: 1.1}}
-                        initial={{scale: 0}}
-                        animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
-                        transition={{scale: {type: 'spring', stiffness: 100, damping: 4}}}
+                        whileHover={{backgroundColor: '#FFB84A', scale: 1.1, transition: {scale: {type: 'spring', stiffness: 250, damping: 4}}}}
+                        variants={variants}
                         ref={buttonRef}>
                             Restart
                     </motion.button>
                     <motion.button 
                         className={styles.game}
                         onClick={handleNewGame}
-                        whileHover={{backgroundColor: '#6395B8', color: '#FFFFFF', scale: 1.1}}
-                        initial={{scale: 0}}
-                        animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
-                        transition={{scale: {type: 'spring', stiffness: 100, damping: 4}}}>
+                        variants={variants}
+                        whileHover={{backgroundColor: '#6395B8', color: '#FFFFFF', scale: 1.1, transition: {scale: {type: 'spring', stiffness: 250, damping: 4}}}}>
                             New Game
                     </motion.button>                
                 </>}
-        </nav>
+        </motion.nav>
     )
 }
 

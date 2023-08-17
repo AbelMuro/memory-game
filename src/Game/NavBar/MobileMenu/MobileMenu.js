@@ -58,7 +58,7 @@ function MobileMenu({restart}) {
                 exit={{scale: 0}}
                 whileHover={{backgroundColor: '#FFB84A', scale: 1.1, transition: {scale: {
                     type:'spring',
-                    stiffness: 100,
+                    stiffness: 250,
                     damping: 4
                 }}}}>
                 Menu

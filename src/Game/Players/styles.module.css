@@ -81,6 +81,10 @@
 }
 
 @media(max-width: 850px){
+    .container{
+        padding-bottom: 20px
+    }
+
     .player{
         font-size: 0.9375rem;
         height: 80px;

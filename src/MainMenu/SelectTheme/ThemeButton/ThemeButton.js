@@ -33,7 +33,7 @@ function ThemeButton({themeOption, variants}) {
                     {scale: 
                         {type: 'spring', 
                         damping: 4, 
-                        stiffness: 100}}}}>
+                        stiffness: 250}}}}>
                 {themeOption}
         </motion.button>
     )

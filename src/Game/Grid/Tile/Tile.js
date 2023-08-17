@@ -47,7 +47,7 @@ function Tile({tile}) {
                 tileRef.current.classList.add(styles.clicked);
                 tileRef.current.classList.remove(styles.currentPlayerClicked);
                 setMatches(true);              
-            }, 2000)
+            }, 1000)
         }
         else if(!matches) {
             tileRef.current.style.pointerEvents = 'none';
@@ -58,7 +58,7 @@ function Tile({tile}) {
                 tileRef.current.classList.remove(styles.clicked);
                 tileRef.current.style.pointerEvents = '';                          
                 setSelected(false);              
-            }, 2000)
+            }, 1000)
         }
     }, [tiles])
 

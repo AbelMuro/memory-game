@@ -66,7 +66,7 @@ function MainMenu() {
                         className={styles.start} 
                         variants={variants}
                         onClick={handleStart}
-                        transition={{scale: {type: 'spring', stiffness: 100, damping: 4}}}
+                        transition={{scale: {type: 'spring', stiffness: 250, damping: 4}}}
                         whileHover={{backgroundColor: '#FFB84A', scale: 1.1}}>
                             Start Game
                     </motion.button>

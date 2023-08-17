@@ -1,12 +1,14 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.css';
 import {motion} from 'framer-motion';
 
 function SinglePlayer() {
+    const dispatch = useDispatch();
     const tiles = useSelector(state => state.tiles);
     const grid = useSelector(state => state.grid);
     const reset = useSelector(state => state.reset);
+    const player = useSelector(state => state.players);
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [moves, setMoves] = useState(0);
@@ -52,11 +54,24 @@ function SinglePlayer() {
         setMoves(0);
     }, [reset])
 
+    useEffect(() => {
+        const highestScorePossile = grid === '4x4' ? 8 : 18;
+        if(player[0].playerScore == highestScorePossile){
+            dispatch({
+                type: 'update results', 
+                time: `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`,
+                moves
+            })
+        }
+            
+    }, [player])
+
     return (
         <motion.div 
             className={styles.container} 
             initial='hide' 
-            animate='show'
+            whileInView={'show'}
+            viewport={{once: true, amount: 0.5}}
             transition={{staggerChildren: 0.3}}>
             <motion.div className={styles.box} variants={variants}>
                 <p className={styles.title}>

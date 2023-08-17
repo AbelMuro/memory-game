@@ -45,7 +45,7 @@ function PlayerButton({numberOfPlayers, variants}) {
                     {scale: 
                         {type: 'spring', 
                         damping: 4, 
-                        tiffness: 100}}}}>
+                        stiffness: 250}}}}>
                 {numberOfPlayers}
         </motion.button>
     )
