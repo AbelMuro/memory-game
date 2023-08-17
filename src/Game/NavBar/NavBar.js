@@ -6,7 +6,6 @@ import useMediaQuery from '../../Hooks/useMediaQuery.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-
 function NavBar() {
     const [mobile] = useMediaQuery('(max-width: 650px)');
     const grid = useSelector(state => state.grid);

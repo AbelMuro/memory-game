@@ -2,12 +2,16 @@ import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
 import { useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 function MobileMenu({restart}) {
     const [open, setOpen] = useState(false);
+    const grid = useSelector(state => state.grid)
     const navigate = useNavigate();
     const overlayRef = useRef();
     const dialogRef = useRef();
+    const menuButtonRef = useRef()
+
 
     const handleOpen = () => {
         setOpen(!open);
@@ -47,15 +51,25 @@ function MobileMenu({restart}) {
         }
     }, [open])
 
+
+    useEffect(() => {
+        menuButtonRef.current.disabled = true;
+        setTimeout(() => {
+            if(!menuButtonRef.current) return;
+            menuButtonRef.current.disabled = false;
+        }, grid === '4x4' ? 6000 : 11000)
+    }, [])
+
     return(
         <>
             <motion.button 
                 onClick={handleOpen}
                 className={styles.menuButton}
-                initial={{scale: 0}}
-                animate={{scale: 1, transition: {scale: {duration: 0.4}}}}
+                initial={{y: -100, opacity: 0}}
+                animate={{y: 0, opacity: 1, transition: {y: {type: 'tween', duration: 0.4}}}}
                 key={'mobile button'}
                 exit={{scale: 0}}
+                ref={menuButtonRef}
                 whileHover={{backgroundColor: '#FFB84A', scale: 1.1, transition: {scale: {
                     type:'spring',
                     stiffness: 250,

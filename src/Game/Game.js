@@ -12,6 +12,12 @@ function Game() {
         body.style.backgroundColor = '#FCFCFC';
     }, [])
 
+    useEffect(() => {
+        window.onbeforeunload = () => {
+            return
+        }
+    }, [])
+
     return(
         <main className={styles.container}>
             <NavBar/>

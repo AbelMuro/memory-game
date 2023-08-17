@@ -36,6 +36,7 @@ function MainMenu() {
         body.style.backgroundColor = '#152938';
     }, [])
 
+    //this useEffect is used to reset the state that is persisted in redux
     useEffect(() => {
         dispatch({type: 'reset scores'});
         dispatch({type: 'reset turn'});

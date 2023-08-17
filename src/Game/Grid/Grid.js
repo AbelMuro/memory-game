@@ -43,7 +43,7 @@ function Grid () {
             if(tiles[0].tile === tiles[1].tile)
                 dispatch({type: 'increase score'});    
             dispatch({type: "next player"});
-        }, 2000)
+        }, 1000)
 
     }, [tiles])
 

@@ -9,14 +9,13 @@ import './styles.css';
 function App() {
     return(
         <Provider store={store}>
-            <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={<MainMenu/>}/>
-                        <Route path='/start' element={<Game/>}/>
-                    </Routes>
-            </BrowserRouter>            
+                <BrowserRouter>
+                        <Routes>
+                            <Route path='/' element={<MainMenu/>}/>
+                            <Route path='/start' element={<Game/>}/>
+                        </Routes>
+                </BrowserRouter>                    
         </Provider>
-
     )
 }
 
