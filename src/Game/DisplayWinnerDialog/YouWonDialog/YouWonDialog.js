@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import {motion} from 'framer-motion';
 
-const YouWonDialog = forwardRef((props, ref) => {
+const YouWonDialog = forwardRef(({handleNewGame, handleRestart}, ref) => {
     const results = useSelector(state => state.results)
 
     return(
@@ -32,11 +32,13 @@ const YouWonDialog = forwardRef((props, ref) => {
             </div>
             <div className={styles.buttons}>
                 <motion.button 
+                    onClick={handleRestart}
                     className={styles.restart}
                     whileHover={{scale: 1.1, transition: {type: 'spring', stiffness: 250, damping: 4}}}>
                     Restart
                 </motion.button>
                 <motion.button 
+                    onClick={handleNewGame}
                     className={styles.newGame}
                     whileHover={{scale: 1.1, transition: {type: 'spring', stiffness: 250, damping: 4}}}>
                     Setup New Game

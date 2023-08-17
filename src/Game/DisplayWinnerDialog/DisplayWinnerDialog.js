@@ -81,7 +81,10 @@ function DisplayWinnerDialog() {
         <div className={styles.overlay} ref={overlayRef}>
             {
                 players.length === 1 ? 
-                <YouWonDialog ref={dialogRef}/>
+                <YouWonDialog 
+                    handleNewGame={handleNewGame} 
+                    handleRestart={handleRestart}
+                    ref={dialogRef}/>
                 :             
                 <dialog className={styles.dialog} ref={dialogRef}>
                     <h1 className={styles.title}>
