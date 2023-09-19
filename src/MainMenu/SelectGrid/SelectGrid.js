@@ -6,7 +6,7 @@ import GridButton from './GridButton';
 function SelectGrid({variants}) {
 
     return(
-        <motion.div className={styles.size}>
+        <motion.div className={styles.size} variants={variants}>
             <motion.h2 className={styles.menu_title} variants={variants}>
                 Grid Size
             </motion.h2>
