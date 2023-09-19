@@ -21,7 +21,7 @@ function MainMenu() {
             x: 0,
             opacity: 1,
             transition: {
-                opacity: {duration: 0.7},
+                opacity: {duration: 0.9},
                 x: {duration: 0.5},
                 staggerChildren: 0.3
             }
