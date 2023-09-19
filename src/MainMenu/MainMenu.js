@@ -13,7 +13,7 @@ function MainMenu() {
 
     const variants = {
         hidden: {
-            x: -100,
+            x: -150,
             opacity: 0,            
         },
         show: {
@@ -56,8 +56,7 @@ function MainMenu() {
             <motion.main 
                 className={styles.menu}
                 initial='hidden'
-                animate='show'
-                variants={variants}>
+                animate='show'>
                     <SelectTheme variants={variants}/>
                     <SelectPlayers variants={variants}/>
                     <SelectGrid variants={variants}/>
