@@ -14,7 +14,7 @@ function MainMenu() {
 
     const variants = {
         hidden: {
-            x: -300,
+            x: -150,
             opacity: 0,            
         },
         show: {
