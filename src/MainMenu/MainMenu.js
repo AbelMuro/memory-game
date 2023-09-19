@@ -7,7 +7,6 @@ import SelectGrid from './SelectGrid';
 import {useNavigate} from 'react-router';
 import {useDispatch} from 'react-redux';
 
-//the problem is the variant object
 function MainMenu() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -21,8 +20,7 @@ function MainMenu() {
             x: 0,
             opacity: 1,
             transition: {
-                opacity: {duration: 0.9},
-                x: {duration: 0.5},
+                duration: 0.5,
                 staggerChildren: 0.3
             }
         }
